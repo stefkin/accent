@@ -13,7 +13,6 @@ defmodule Movement.Builders.NewSlave do
   def build(context) do
     context
     |> assign_master_revision
-    |> assign_translations
     |> process_operations
   end
 
