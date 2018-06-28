@@ -13,6 +13,7 @@ defmodule Movement.Builders.NewSlave do
   def build(context) do
     context
     |> assign_master_revision
+    |> assign_translations
     |> process_operations
   end
 
@@ -36,10 +37,7 @@ defmodule Movement.Builders.NewSlave do
   end
 
   defp assign_translations(context = %Movement.Context{assigns: assigns}) do
-    translations =
-      Translation
-      |> TranslationScope.from_revision(assigns[:master_revision].id)
-      |> Repo.all()
+    translations = []
 
     assign(context, :translations, translations)
   end
